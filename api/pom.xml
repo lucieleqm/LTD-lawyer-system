@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.advocacia</groupId>
-    <artifactId>backend</artifactId>
+    <artifactId>api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>backend</name>
-    <description>backend of prj_adv</description>
+    <name>api</name>
+    <description>API do projeto de advocacia</description>
     <url/>
     <licenses>
         <license/>
