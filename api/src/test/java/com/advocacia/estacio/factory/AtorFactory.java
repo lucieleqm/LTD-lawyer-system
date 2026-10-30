@@ -1,7 +1,7 @@
 package com.advocacia.estacio.factory;
 
 import com.advocacia.estacio.domain.entities.Ator;
-import com.advocacia.estacio.modules.professores.Professor;
+import com.advocacia.estacio.modules.membros.professores.Professor;
 
 public abstract class AtorFactory {
 

@@ -4,9 +4,9 @@ import static com.advocacia.estacio.utils.Utils.localDateToString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import com.advocacia.estacio.modules.usuarios.Usuario;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
-import com.advocacia.estacio.modules.estagiarios.EstagiarioService;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.membros.estagiarios.EstagiarioService;
 import com.advocacia.estacio.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
@@ -17,12 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
-import com.advocacia.estacio.modules.estagiarios.Estagiario;
-import com.advocacia.estacio.modules.estagiarios.PeriodoEstagio;
-import com.advocacia.estacio.modules.usuarios.UsuarioRole;
+import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
+import com.advocacia.estacio.modules.membros.estagiarios.PeriodoEstagio;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRole;
 import com.advocacia.estacio.domain.records.EntidadeMinDto;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
 import com.advocacia.estacio.utils.TestUtil;
 
 import java.util.List;

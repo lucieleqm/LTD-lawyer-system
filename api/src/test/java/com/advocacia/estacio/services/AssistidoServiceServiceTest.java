@@ -1,13 +1,13 @@
 package com.advocacia.estacio.services;
 
-import com.advocacia.estacio.modules.assistidos.AssistidoService;
+import com.advocacia.estacio.modules.atendimento.assistidos.AssistidoService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
-import com.advocacia.estacio.modules.assistidos.Assistido;
-import com.advocacia.estacio.modules.pessoas.EstadoCivil;
+import com.advocacia.estacio.modules.atendimento.assistidos.Assistido;
+import com.advocacia.estacio.modules.identidade.pessoas.EstadoCivil;
 import com.advocacia.estacio.modules.assistidos.AssistidoRepository;
 import com.advocacia.estacio.utils.TestUtil;
 

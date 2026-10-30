@@ -1,16 +1,16 @@
 package com.advocacia.estacio.services;
 
 import com.advocacia.estacio.domain.entities.Ator;
-import com.advocacia.estacio.modules.usuarios.Usuario;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
-import com.advocacia.estacio.modules.advogados.AdvogadoService;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.membros.advogados.AdvogadoService;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
-import com.advocacia.estacio.modules.advogados.Advogado;
+import com.advocacia.estacio.modules.membros.advogados.Advogado;
 import com.advocacia.estacio.modules.advogados.AdvogadoRepository;
 import com.advocacia.estacio.utils.TestUtil;
 

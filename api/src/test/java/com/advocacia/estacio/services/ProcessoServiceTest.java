@@ -2,22 +2,22 @@ package com.advocacia.estacio.services;
 
 import java.util.List;
 
-import com.advocacia.estacio.modules.processos.AreaDireito;
-import com.advocacia.estacio.modules.processos.ProcessoStatus;
-import com.advocacia.estacio.modules.processos.Tribunal;
-import com.advocacia.estacio.modules.advogados.AdvogadoService;
-import com.advocacia.estacio.modules.assistidos.AssistidoService;
+import com.advocacia.estacio.modules.judicial.processos.AreaDireito;
+import com.advocacia.estacio.modules.judicial.processos.ProcessoStatus;
+import com.advocacia.estacio.modules.judicial.processos.Tribunal;
+import com.advocacia.estacio.modules.membros.advogados.AdvogadoService;
+import com.advocacia.estacio.modules.atendimento.assistidos.AssistidoService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
-import com.advocacia.estacio.modules.advogados.Advogado;
-import com.advocacia.estacio.modules.assistidos.Assistido;
-import com.advocacia.estacio.modules.estagiarios.Estagiario;
-import com.advocacia.estacio.modules.processos.Processo;
+import com.advocacia.estacio.modules.membros.advogados.Advogado;
+import com.advocacia.estacio.modules.atendimento.assistidos.Assistido;
+import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
+import com.advocacia.estacio.modules.judicial.processos.Processo;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
-import com.advocacia.estacio.modules.processos.ProcessoRepository;
+import com.advocacia.estacio.modules.judicial.processos.ProcessoRepository;
 import com.advocacia.estacio.utils.TestUtil;
 
 import static org.junit.jupiter.api.Assertions.*;

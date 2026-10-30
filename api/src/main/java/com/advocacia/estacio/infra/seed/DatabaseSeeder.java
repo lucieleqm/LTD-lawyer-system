@@ -1,11 +1,11 @@
 package com.advocacia.estacio.infra.seed;
 
-import com.advocacia.estacio.modules.pessoas.Pessoa;
-import com.advocacia.estacio.modules.pessoas.PessoaRepository;
-import com.advocacia.estacio.modules.usuarios.Usuario;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
-import com.advocacia.estacio.modules.usuarios.UsuarioRole;
-import com.advocacia.estacio.modules.usuarios.UsuarioService;
+import com.advocacia.estacio.modules.identidade.pessoas.Pessoa;
+import com.advocacia.estacio.modules.identidade.pessoas.PessoaRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRole;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;

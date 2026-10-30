@@ -17,9 +17,9 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
 import com.advocacia.estacio.modules.processos.movimentacoes.MovimentoRepository;
-import com.advocacia.estacio.modules.processos.ProcessoRepository;
-import com.advocacia.estacio.modules.advogados.AdvogadoService;
-import com.advocacia.estacio.modules.assistidos.AssistidoService;
+import com.advocacia.estacio.modules.judicial.processos.ProcessoRepository;
+import com.advocacia.estacio.modules.membros.advogados.AdvogadoService;
+import com.advocacia.estacio.modules.atendimento.assistidos.AssistidoService;
 import com.advocacia.estacio.services.ProcessoService;
 import com.advocacia.estacio.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;

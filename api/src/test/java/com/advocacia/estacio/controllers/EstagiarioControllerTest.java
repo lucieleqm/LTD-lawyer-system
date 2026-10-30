@@ -8,10 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.advocacia.estacio.modules.usuarios.Usuario;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
-import com.advocacia.estacio.modules.estagiarios.EstagiarioService;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.membros.estagiarios.EstagiarioService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,8 +19,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.advocacia.estacio.modules.estagiarios.Estagiario;
-import com.advocacia.estacio.modules.estagiarios.PeriodoEstagio;
+import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
+import com.advocacia.estacio.modules.membros.estagiarios.PeriodoEstagio;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
 import com.advocacia.estacio.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;

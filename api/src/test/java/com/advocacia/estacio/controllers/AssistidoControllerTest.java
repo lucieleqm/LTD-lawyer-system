@@ -23,8 +23,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.advocacia.estacio.modules.assistidos.Assistido;
-import com.advocacia.estacio.modules.pessoas.EstadoCivil;
+import com.advocacia.estacio.modules.atendimento.assistidos.Assistido;
+import com.advocacia.estacio.modules.identidade.pessoas.EstadoCivil;
 import com.advocacia.estacio.modules.assistidos.AssistidoRepository;
 import com.advocacia.estacio.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;

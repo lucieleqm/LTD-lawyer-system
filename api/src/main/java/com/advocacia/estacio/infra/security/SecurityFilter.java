@@ -2,7 +2,7 @@ package com.advocacia.estacio.infra.security;
 
 import java.io.IOException;
 
-import com.advocacia.estacio.modules.usuarios.UsuarioRole;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRole;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -3,7 +3,7 @@ package com.advocacia.estacio.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.advocacia.estacio.modules.usuarios.Usuario;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 import com.advocacia.estacio.domain.records.RegistroDto;
 import com.advocacia.estacio.infra.security.TokenService;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
 import com.advocacia.estacio.utils.TestUtil;
 
 @SpringBootTest

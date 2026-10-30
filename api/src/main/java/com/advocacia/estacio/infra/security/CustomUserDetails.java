@@ -1,6 +1,6 @@
 package com.advocacia.estacio.infra.security;
 
-import com.advocacia.estacio.modules.usuarios.UsuarioRole;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRole;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

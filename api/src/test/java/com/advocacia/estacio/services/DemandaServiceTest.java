@@ -1,13 +1,13 @@
 package com.advocacia.estacio.services;
 
-import com.advocacia.estacio.modules.advogados.Advogado;
-import com.advocacia.estacio.modules.professores.Professor;
+import com.advocacia.estacio.modules.membros.advogados.Advogado;
+import com.advocacia.estacio.modules.membros.professores.Professor;
 import com.advocacia.estacio.modules.demandas.enums.EtapaDemanda;
 import com.advocacia.estacio.modules.demandas.enums.Tempestividade;
-import com.advocacia.estacio.modules.usuarios.UsuarioRole;
-import com.advocacia.estacio.modules.advogados.AdvogadoService;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRole;
+import com.advocacia.estacio.modules.membros.advogados.AdvogadoService;
 import com.advocacia.estacio.modules.demandas.services.DemandaService;
-import com.advocacia.estacio.modules.estagiarios.EstagiarioService;
+import com.advocacia.estacio.modules.membros.estagiarios.EstagiarioService;
 import com.advocacia.estacio.modules.advogados.AdvogadoRepository;
 import com.advocacia.estacio.repositories.AtorRepository;
 import org.junit.jupiter.api.*;
@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 
 import com.advocacia.estacio.modules.demandas.entities.Demanda;
-import com.advocacia.estacio.modules.estagiarios.Estagiario;
+import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
 import com.advocacia.estacio.modules.demandas.repositories.DemandaRepository;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
 import com.advocacia.estacio.utils.TestUtil;

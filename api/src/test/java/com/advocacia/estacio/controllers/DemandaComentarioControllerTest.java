@@ -1,12 +1,12 @@
 package com.advocacia.estacio.controllers;
 
 import com.advocacia.estacio.modules.demandas.entities.Demanda;
-import com.advocacia.estacio.modules.estagiarios.Estagiario;
-import com.advocacia.estacio.modules.professores.Professor;
+import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
+import com.advocacia.estacio.modules.membros.professores.Professor;
 import com.advocacia.estacio.modules.demandas.repositories.DemandaRepository;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
 
-import com.advocacia.estacio.modules.advogados.AdvogadoService;
+import com.advocacia.estacio.modules.membros.advogados.AdvogadoService;
 import com.advocacia.estacio.services.AtorService;
 import com.advocacia.estacio.modules.demandas.services.DemandaService;
 import com.advocacia.estacio.utils.TestUtil;

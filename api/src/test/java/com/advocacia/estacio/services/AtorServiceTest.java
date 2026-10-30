@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.advocacia.estacio.domain.entities.*;
-import com.advocacia.estacio.modules.professores.Professor;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
-import com.advocacia.estacio.modules.usuarios.Usuario;
+import com.advocacia.estacio.modules.membros.professores.Professor;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -19,7 +19,7 @@ import org.springframework.data.domain.Page;
 
 import com.advocacia.estacio.domain.dto.AtorDto;
 import com.advocacia.estacio.repositories.AtorRepository;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
 import com.advocacia.estacio.utils.TestUtil;
 
 import java.util.List;

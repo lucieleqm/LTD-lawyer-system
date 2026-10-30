@@ -1,7 +1,7 @@
 package com.advocacia.estacio.services;
 
-import static com.advocacia.estacio.modules.usuarios.UsuarioStatus.ATIVO;
-import static com.advocacia.estacio.modules.usuarios.UsuarioStatus.INATIVO;
+import static com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus.ATIVO;
+import static com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus.INATIVO;
 import static com.advocacia.estacio.utils.Utils.localDateToString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.advocacia.estacio.modules.usuarios.Usuario;
-import com.advocacia.estacio.modules.estagiarios.EstagiarioService;
-import com.advocacia.estacio.modules.usuarios.UsuarioService;
+import com.advocacia.estacio.modules.identidade.usuarios.Usuario;
+import com.advocacia.estacio.modules.membros.estagiarios.EstagiarioService;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -23,12 +23,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.advocacia.estacio.domain.entities.DesativarAtivarUsuarioPorData;
-import com.advocacia.estacio.modules.usuarios.UsuarioRole;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRole;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
 import com.advocacia.estacio.domain.records.AuthenticationDto;
 import com.advocacia.estacio.domain.records.LoginResponseDto;
 import com.advocacia.estacio.domain.records.RegistroDto;
-import com.advocacia.estacio.modules.usuarios.UsuarioRepository;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioRepository;
 import com.advocacia.estacio.utils.TestUtil;
 
 @SpringBootTest

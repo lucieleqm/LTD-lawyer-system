@@ -25,10 +25,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.advocacia.estacio.domain.entities.DesativarAtivarUsuarioPorData;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
 import com.advocacia.estacio.domain.records.AuthenticationDto;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioRepository;
-import com.advocacia.estacio.modules.estagiarios.EstagiarioService;
+import com.advocacia.estacio.modules.membros.estagiarios.EstagiarioService;
 import com.advocacia.estacio.utils.TestUtil;
 import com.advocacia.estacio.utils.Utils;
 import com.fasterxml.jackson.databind.ObjectMapper;

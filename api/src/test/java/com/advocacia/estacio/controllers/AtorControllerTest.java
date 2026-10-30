@@ -27,7 +27,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.advocacia.estacio.domain.dto.AtorDto;
 import com.advocacia.estacio.domain.entities.Ator;
-import com.advocacia.estacio.modules.usuarios.UsuarioStatus;
+import com.advocacia.estacio.modules.identidade.usuarios.UsuarioStatus;
 import com.advocacia.estacio.repositories.AtorRepository;
 import com.advocacia.estacio.utils.TestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
