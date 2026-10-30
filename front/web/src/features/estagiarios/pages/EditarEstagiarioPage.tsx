@@ -10,6 +10,7 @@ import { paths } from '@/routes/paths';
 import { AtualizarEstagiarioRequest } from '../schema';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { LoadingState } from '@/components/ui/LoadingState';
 
 function paraValoresDoForm(estagiario: Estagiario) {
   return {
@@ -51,11 +52,7 @@ export default function EditarEstagiarioPage() {
   }
 
   if (isLoading) {
-    return (
-      <Center py={64}>
-        <Loader color="institucional" type="dots" />
-      </Center>
-    );
+    return <LoadingState />;
   }
 
   if (!estagiario) {

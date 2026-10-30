@@ -62,7 +62,9 @@ export default function DetalheEstagiarioPage() {
           <>
             {podeEditar && (
               <EditButton
-                onClick={() => navigate(`/estagiarios/${estagiario.id}/editar`)}
+                onClick={() =>
+                  navigate(paths.estagiarios.editar(estagiario.id))
+                }
               />
             )}
             {!ehVoceMesmo && (

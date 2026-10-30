@@ -13,6 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,9 +56,6 @@ public class Demanda implements Serializable {
     @OneToMany(mappedBy = "demanda", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DemandaTramitacao> tramitacoes = new ArrayList<>();
 
-    @Enumerated(EnumType.STRING)
-    private Tempestividade tempestividade = Tempestividade.DENTRO_DO_PRAZO;
-
     @Column(name = "data_abertura", updatable = false)
     @CreationTimestamp
     private LocalDateTime dataAbertura;
@@ -68,14 +66,31 @@ public class Demanda implements Serializable {
     protected Demanda() {
     }
 
+    public void atualizarDados(Advogado advogado, Estagiario estagiario, Professor professor,
+                               String descricao, LocalDate prazoDocumentos, Integer diasAdicionais,
+                               EtapaDemanda etapaAtual) {
+
+        this.advogado = advogado;
+        this.estagiario = estagiario;
+        this.professor = professor;
+        this.descricao = descricao;
+        this.prazoDocumentos = prazoDocumentos;
+
+        if (this.prazoDocumentos != null && diasAdicionais != null) {
+            this.prazoFinal = this.prazoDocumentos.plusDays(diasAdicionais);
+        }
+
+        this.etapaAtual = etapaAtual;
+
+    }
+
     // TODO: hashCode() e equals()
 
     @Builder
     public Demanda(Advogado advogado, Estagiario estagiario, Professor professor,
                    String descricao, LocalDate prazoFinal, LocalDate prazoDocumentos,
                    EtapaDemanda etapaAtual, List<DemandaTramitacao> tramitacoes,
-                   Tempestividade tempestividade, LocalDateTime dataAbertura,
-                   LocalDateTime ultimaAtualizacao) {
+                   LocalDateTime dataAbertura, LocalDateTime ultimaAtualizacao) {
 
         this.advogado = advogado;
         this.estagiario = estagiario;
@@ -85,9 +100,7 @@ public class Demanda implements Serializable {
         this.prazoDocumentos = prazoDocumentos;
         this.dataAbertura = dataAbertura;
         this.ultimaAtualizacao = ultimaAtualizacao;
-
         this.etapaAtual = etapaAtual != null ? etapaAtual : EtapaDemanda.ELABORACAO;
-        this.tempestividade = tempestividade != null ? tempestividade : Tempestividade.DENTRO_DO_PRAZO;
         this.tramitacoes = tramitacoes != null ? tramitacoes : new ArrayList<>();
     }
 
@@ -107,5 +120,11 @@ public class Demanda implements Serializable {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
+    @Transient
+    public Tempestividade getTempestividade() {
+        return LocalDate.now(ZoneId.of("America/Fortaleza")).isAfter(prazoFinal)
+                ? Tempestividade.FORA_DO_PRAZO
+                : Tempestividade.DENTRO_DO_PRAZO;
+    }
 
 }

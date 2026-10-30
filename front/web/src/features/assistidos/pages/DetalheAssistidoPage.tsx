@@ -53,7 +53,7 @@ export default function DetalheAssistidoPage() {
           <>
             {podeEditar && (
               <EditButton
-                onClick={() => navigate(`/assistidos/${assistido.id}/editar`)}
+                onClick={() => navigate(paths.assistidos.editar(assistido.id))}
               />
             )}
           </>,

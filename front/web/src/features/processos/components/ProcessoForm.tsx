@@ -43,9 +43,9 @@ export function ProcessoForm({
 
   const { isSubmitting } = methods.formState;
 
-
   const textoBotao =
     modo === 'criar' ? 'Adicionar Processo' : 'Salvar Alterações';
+
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
@@ -80,11 +80,7 @@ export function ProcessoForm({
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 12 }}>
-              <Input
-                name="numeroProcessoPje"
-                label="Número do Processo PJE"
-                withAsterisk
-              />
+              <Input name="numeroProcessoPje" label="Número do Processo PJE" />
             </Grid.Col>
 
             <Grid.Col span={12}>
@@ -92,7 +88,7 @@ export function ProcessoForm({
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 4 }}>
-              <Input name="vara" label="Vara" withAsterisk />
+              <Input name="vara" label="Vara" />
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 4 }}>
@@ -100,7 +96,6 @@ export function ProcessoForm({
                 name="areaDireito"
                 label="Área do Direito"
                 options={opcoesAreasDireito}
-                withAsterisk
               />
             </Grid.Col>
 
@@ -109,17 +104,11 @@ export function ProcessoForm({
                 name="tribunal"
                 label="Tribunal"
                 options={opcoesTribunais}
-                withAsterisk
               />
             </Grid.Col>
 
             <Grid.Col span={{ base: 12, md: 4 }}>
-              <Input
-                name="prazoFinal"
-                label="Prazo Final"
-                type="date"
-                withAsterisk
-              />
+              <Input name="prazoFinal" label="Prazo Final" type="date" />
             </Grid.Col>
           </Grid>
         </FormSection>

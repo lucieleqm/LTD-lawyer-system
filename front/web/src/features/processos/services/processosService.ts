@@ -1,5 +1,5 @@
 import { api } from '@/lib/api/axios';
-import { CriarProcessoRequest } from '../schema';
+import { AtualizarProcessoRequest, CriarProcessoRequest } from '../schema';
 import { ListarProcessosParams, Processo, ProcessoListItem } from '../types';
 import { PageResponse } from '@/types/pageResponse';
 
@@ -34,6 +34,14 @@ export const processosService = {
 
   criar: async (dados: CriarProcessoRequest): Promise<Processo> => {
     const { data } = await api.post('/processos', dados);
+    return data;
+  },
+
+  atualizar: async (
+    id: number,
+    dados: AtualizarProcessoRequest,
+  ): Promise<Processo> => {
+    const { data } = await api.put(`/processos/${id}`, dados);
     return data;
   },
 };

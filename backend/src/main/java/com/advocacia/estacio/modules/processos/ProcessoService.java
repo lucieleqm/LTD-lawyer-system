@@ -17,6 +17,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProcessoService {
@@ -63,21 +65,45 @@ public class ProcessoService {
 		return new ProcessoDTO.Response(processo);
 	}
 
-//
-//
-//	public Processo atualizarProcesso(Long id, ProcessoUpdate processoUpdate) {
-//		Processo processo = buscarPorId(id);
-//		processo.setId(id);
-//		processo = dtoParaEntidade(processo, processoUpdate);
-//
-//		Estagiario estagiario = estagiarioService.buscarPorId(processoUpdate.getEstagiarioId());
-//		Advogado advogado = advogadoService.buscarPorId(processoUpdate.getAdvogadoId());
-//		processo.setAdvogado(advogado);
-//		processo.setEstagiario(estagiario);
-//
-//		return processoRepository.save(processo);
-//	}
-//
+	// Pendente de avaliação
+	@Transactional
+	public ProcessoDTO.Response atualizar(Long id, ProcessoDTO.UpdateRequest req) {
+		Processo processo = processoRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Processo não encontrado"));
+
+		if (req.numeroProcessoPje() != null && !req.numeroProcessoPje().isBlank()
+				&& !req.numeroProcessoPje().equals(processo.getNumeroProcessoPje())) {
+			validarNumeroPjeUnico(req.numeroProcessoPje());
+		}
+
+		Assistido assistido = assistidoService.obterReferencia(req.assistidoId());
+		Advogado advogado = advogadoService.obterReferencia(req.advogadoId());
+		Estagiario estagiario = estagiarioService.obterReferecia(req.estagiarioId());
+
+		processo.atualizarDados(
+				advogado,
+				estagiario,
+				assistido,
+				req.numeroProcessoPje(),
+				req.areaDireito(),
+				req.assunto(),
+				req.vara(),
+				req.tribunal(),
+				req.status(),
+				req.prazoFinal()
+		);
+
+		if (req.partesEnvolvidas() != null) {
+			List<ParteEnvolvida> novasPartes = req.partesEnvolvidas().stream()
+					.map(ProcessoDTO.ParteEnvolvidaRequest::toEntity)
+					.toList();
+
+			processo.atualizarPartesEnvolvidas(novasPartes);
+		}
+
+		return new ProcessoDTO.Response(processo);
+	}
+
 	// ----------- MÉTODOS PRIVADOS AUXILIARES ----------------
 
 	private void validarNumeroPjeUnico(String numeroPje) {

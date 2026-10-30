@@ -76,13 +76,12 @@ public class DemandaController {
 		return ResponseEntity.ok((demandaService.listarAcoesDisponiveis(demandaId, usuarioLogado.getRole())));
 	}
 
-
-//	@PutMapping("/{id}/update")
-//	public ResponseEntity<Void> mudarDemandaStatus(
-//			@PathVariable Long id,
-//			@RequestBody DemandaStatusDto demandaStatusDto) {
-//		demandaService.mudarDemandaStatus(id, demandaStatusDto);
-//		return ResponseEntity.noContent().build();
-//	}
+	@PutMapping("/{id}")
+	public ResponseEntity<DemandaDTO.Response> atualizar(
+			@PathVariable Long id, @RequestBody @Valid DemandaDTO.UpdateRequest request
+	) {
+		DemandaDTO.Response response = demandaService.atualizar(id, request);
+		return ResponseEntity.ok(response);
+	}
 }
 

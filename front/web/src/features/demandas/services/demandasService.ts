@@ -1,5 +1,9 @@
 import { api } from '@/lib/api/axios';
-import { CriarDemandaRequest, CriarTramitacaoRequest } from '../schema';
+import {
+  AtualizarDemandaRequest,
+  CriarDemandaRequest,
+  CriarTramitacaoRequest,
+} from '../schema';
 import {
   Demanda,
   DemandaListItem,
@@ -73,11 +77,11 @@ export const demandasService = {
     await api.post(`/demandas/${demandaId}/tramitacoes`, dados);
   },
 
-  // atualizar: async (
-  //   id: number,
-  //   dados: AtualizarEstagiarioRequest,
-  // ): Promise<Estagiario> => {
-  //   const { data } = await api.put(`/estagiarios/${id}`, dados);
-  //   return data;
-  // },
+  atualizar: async (
+    id: number,
+    dados: AtualizarDemandaRequest,
+  ): Promise<Demanda> => {
+    const { data } = await api.put(`/demandas/${id}`, dados);
+    return data;
+  },
 };

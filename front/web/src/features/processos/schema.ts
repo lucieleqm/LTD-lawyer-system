@@ -4,10 +4,7 @@ import z from 'zod';
 export const parteEnvolvidaSchema = z.object({
   nome: z.string().min(1, 'O nome é obrigatório'),
   papel: z.string().min(1, 'O papel no processo é obrigatório'),
-  especificacaoPapel: z.preprocess(
-    vazioParaUndefined,
-    z.string().optional()
-  ),
+  especificacaoPapel: z.preprocess(vazioParaUndefined, z.string().optional()),
 });
 
 const processoBaseSchema = z.object({
@@ -23,9 +20,8 @@ const processoBaseSchema = z.object({
   partesEnvolvidas: z.array(parteEnvolvidaSchema).optional().default([]),
 });
 
-
 export const criarProcessoSchema = processoBaseSchema;
-export const atualizarProcessoSchema = processoBaseSchema.partial();
+export const atualizarProcessoSchema = processoBaseSchema;
 
 export type ParteEnvolvidaRequest = z.infer<typeof parteEnvolvidaSchema>;
 export type CriarProcessoRequest = z.infer<typeof criarProcessoSchema>;

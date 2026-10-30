@@ -62,7 +62,7 @@ export function DetalheAdvogadoPage() {
           <>
             {podeEditar && (
               <EditButton
-                onClick={() => navigate(`/advogados/${advogado.id}/editar`)}
+                onClick={() => navigate(paths.advogados.editar(advogado.id))}
               />
             )}
             {!ehVoceMesmo && (

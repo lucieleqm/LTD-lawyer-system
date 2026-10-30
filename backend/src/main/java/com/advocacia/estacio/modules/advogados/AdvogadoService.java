@@ -45,7 +45,8 @@ public class AdvogadoService {
 	@Transactional(readOnly = true)
 	public List<AdvogadoDTO.OptionResponse> listarOpcoes(String nome) {
 		Pageable limite = PageRequest.of(0, 20);
-		return  advogadoRepository.buscarAtivosPorNome(nome, UsuarioStatus.ATIVO, limite);
+		List<UsuarioStatus> statusPermitidos = List.of(UsuarioStatus.ATIVO, UsuarioStatus.BLOQUEADO);
+		return  advogadoRepository.buscarAtivosPorNome(nome, statusPermitidos, limite);
 	}
 
 	@Transactional(readOnly = true)

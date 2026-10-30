@@ -1,0 +1,1 @@
+alter table tbl_demanda drop column tempestividade;

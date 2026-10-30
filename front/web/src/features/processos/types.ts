@@ -1,5 +1,12 @@
 import { AreaDireito, ProcessoStatus, Tribunal } from './constants';
 
+export interface ParteEnvolvida {
+  id: number;
+  nome: string;
+  papel: string;
+  especificacaoPapel?: string;
+}
+
 export interface Processo {
   id: number;
   numeroProcesso: string;
@@ -15,7 +22,7 @@ export interface Processo {
   advogadoNome: string;
   assistidoId: number;
   assistidoNome: string;
-  partesEnvolvidas: string;
+  partesEnvolvidas: ParteEnvolvida[];
   prazoFinal: string;
   atualizadoEm: string;
   criadoEm: string;

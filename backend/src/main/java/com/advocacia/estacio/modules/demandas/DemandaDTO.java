@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 public interface DemandaDTO {
     @Schema(name = "DemandaCreateRequest")
     record Request(
-            @NotNull Long advogadoId,
-            @NotNull Long estagiarioId,
-            @NotNull Long professorId,
+            @NotNull(message = "O advogado é obrigatório") Long advogadoId,
+            @NotNull(message = "O estagiário é obrigatório") Long estagiarioId,
+            @NotNull(message = "O professor é obrigatório") Long professorId,
             @Schema(example = "Cliente sofreu acidente de trânsito e a seguradora se recusa a pagar.")
-            @NotBlank String descricao,
-            @NotNull Integer diasAdicionais,
-            @NotNull LocalDate prazoDocumentos,
-            @NotNull EtapaDemanda etapaAtual
+            @NotBlank(message = "A descrição é obrigatória") String descricao,
+            @NotNull(message = "Os dias adicionais é obrigatório") Integer diasAdicionais,
+            @NotNull(message = "O prazo da documentação é obrigatória")  LocalDate prazoDocumentos,
+            @NotNull(message = "O prazo final é obrigatório")  EtapaDemanda etapaAtual
     ) {
         public Demanda toEntity(Advogado advogado, Estagiario estagiario, Professor professor) {
             LocalDate prazoFinal = this.prazoDocumentos.plusDays(this.diasAdicionais);
@@ -105,5 +105,16 @@ public interface DemandaDTO {
             String termo,
             EtapaDemanda etapaAtual,
             Tempestividade tempestividade
+    ) {}
+
+    @Schema(name = "DemandaUpdateRequest")
+    record UpdateRequest(
+            @NotNull(message = "O advogado é obrigatório") Long advogadoId,
+            @NotNull(message = "O estagiário é obrigatório") Long estagiarioId,
+            @NotNull(message = "O professor é obrigatório") Long professorId,
+            @NotBlank(message = "A descrição é obrigatória") String descricao,
+            @NotNull(message = "O campo 'dias adicionais' é obrigatório") Integer diasAdicionais,
+            @NotNull(message = "O prazo da documentação é obrigatória")  LocalDate prazoDocumentos,
+            @NotNull(message = "O prazo final é obrigatório")  EtapaDemanda etapaAtual
     ) {}
 }

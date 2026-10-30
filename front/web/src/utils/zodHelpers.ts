@@ -9,6 +9,9 @@ export function tratarEnderecoOpcional(valores: unknown) {
 
 // utilizar quando precisa validar um campo mas ele é opcional.
 export function vazioParaUndefined(valor: unknown) {
+  if (valor === null || valor === undefined) {
+    return undefined;
+  }
   if (typeof valor === 'string' && valor.trim() === '') {
     return undefined;
   }

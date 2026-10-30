@@ -48,7 +48,7 @@ export function DetalheAdministrativoPage() {
         actions={[
           <EditButton
             onClick={() =>
-              navigate(`/administrativos/${administrativo.pessoa.id}/editar`)
+              navigate(paths.administrativo.editar(administrativo.pessoa.id))
             }
           />,
         ]}

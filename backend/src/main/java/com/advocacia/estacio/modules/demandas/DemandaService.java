@@ -4,13 +4,16 @@ import com.advocacia.estacio.infra.exceptions.RegraDeNegocioException;
 import com.advocacia.estacio.infra.security.AuthorizationUtils;
 import com.advocacia.estacio.infra.security.CustomUserDetails;
 
+import com.advocacia.estacio.modules.advogados.Advogado;
 import com.advocacia.estacio.modules.demandas.tramitacoes.DemandaTramitacao;
 import com.advocacia.estacio.modules.demandas.tramitacoes.DemandaTramitacaoDTO;
 import com.advocacia.estacio.modules.demandas.tramitacoes.TipoTramitacao;
+import com.advocacia.estacio.modules.estagiarios.Estagiario;
 import com.advocacia.estacio.modules.estagiarios.EstagiarioService;
 import com.advocacia.estacio.modules.advogados.AdvogadoService;
 import com.advocacia.estacio.modules.pessoas.Pessoa;
 import com.advocacia.estacio.modules.pessoas.PessoaService;
+import com.advocacia.estacio.modules.professores.Professor;
 import com.advocacia.estacio.modules.professores.ProfessorService;
 import com.advocacia.estacio.infra.security.SecurityUtils;
 import com.advocacia.estacio.modules.usuarios.UsuarioRole;
@@ -117,6 +120,28 @@ public class DemandaService {
 				.filter(acao -> acao.podeSerExecutadaPor(roleLogado))
 				.map(acao -> new DemandaTramitacaoDTO.Disponivel(acao, acao.getDescricao()))
 				.toList();
+	}
+
+	// Pendente de avaliação
+	@Transactional
+	public DemandaDTO.Response atualizar(Long id, DemandaDTO.UpdateRequest req) {
+		Demanda demanda = demandaRepository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Demanda não encontrada com ID: " + id));
+
+		Advogado advogado = advogadoService.obterReferencia(req.advogadoId());
+		Estagiario estagiario = estagiarioService.obterReferecia(req.estagiarioId()); // corrigir erro de pt
+		Professor professor = professorService.obterReferencia(req.professorId());
+
+		demanda.atualizarDados(
+				advogado,
+				estagiario,
+				professor,
+				req.descricao(),
+				req.prazoDocumentos(),
+				req.diasAdicionais(),
+				req.etapaAtual()
+		);
+		return new DemandaDTO.Response(demanda);
 	}
 
 	// --- MÉTODOS PRIVADOS (Auxiliares internos) ---

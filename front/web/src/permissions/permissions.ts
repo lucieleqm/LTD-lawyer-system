@@ -4,7 +4,12 @@ const permissions = {
   // Processos
   'processos:criar': [ROLE.COORDENADOR_DO_CURSO, ROLE.ADMIN],
   'processos:editar': [ROLE.COORDENADOR_DO_CURSO, ROLE.ADMIN],
-  'processos:visualizar': [ROLE.COORDENADOR_DO_CURSO, ROLE.ADMIN],
+  'processos:visualizar': [
+    ROLE.COORDENADOR_DO_CURSO,
+    ROLE.ADMIN,
+    ROLE.ESTAGIARIO,
+    ROLE.ADVOGADO,
+  ],
 
   // Demandas
   'demandas:criar': [ROLE.COORDENADOR_DO_CURSO, ROLE.PROFESSOR, ROLE.ADMIN],

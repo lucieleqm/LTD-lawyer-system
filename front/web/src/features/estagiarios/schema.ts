@@ -1,5 +1,6 @@
 import { vazioParaUndefined } from '@/utils/zodHelpers';
 import { z } from 'zod';
+import { PERIODO_ESTAGIO } from './constants';
 
 const dadosBaseSchema = z.object({
   nome: z.string().min(1, 'Nome é obrigatório'),
@@ -9,7 +10,9 @@ const dadosBaseSchema = z.object({
   ),
   email: z.string().min(1, 'E-mail é obrigatório').email('E-mail inválido'),
   matricula: z.string().min(1, 'Matrícula é obrigatória'),
-  periodoEstagio: z.string().min(1, 'Período é obrigatório'),
+  periodoEstagio: z.enum(PERIODO_ESTAGIO, {
+    message: 'Período do estágio é obrigatório',
+  }),
 });
 
 // criar = dados base + acesso ao sistema

@@ -4,6 +4,7 @@ import com.advocacia.estacio.modules.advogados.Advogado;
 import com.advocacia.estacio.modules.assistidos.Assistido;
 import com.advocacia.estacio.modules.estagiarios.Estagiario;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -166,4 +167,19 @@ public interface ProcessoDTO {
             );
         }
     }
+
+    @Schema(name = "ProcessoUpdateRequest")
+    record UpdateRequest(
+            @NotNull Long advogadoId,
+            @NotNull Long estagiarioId,
+            @NotNull Long assistidoId,
+            String numeroProcessoPje,
+            AreaDireito areaDireito,
+            String assunto,
+            String vara,
+            Tribunal tribunal,
+            ProcessoStatus status,
+            LocalDate prazoFinal,
+            @Valid List<ParteEnvolvidaRequest> partesEnvolvidas
+    ) {}
 }

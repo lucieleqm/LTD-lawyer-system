@@ -5,6 +5,7 @@ import { RoleGuard } from '@/routes/RoleGuard';
 import CriarProcessoPage from './pages/CriarProcessoPage';
 import ListaProcessosPage from './pages/ListaProcessosPage';
 import DetalheProcessoPage from './pages/DetalheProcessoPage';
+import EditarProcessoPage from './pages/EditarProcessoPage';
 
 export const processosRoutes: RouteObject[] = [
   {
@@ -28,6 +29,14 @@ export const processosRoutes: RouteObject[] = [
     element: (
       <RoleGuard action="processos:criar">
         <CriarProcessoPage />
+      </RoleGuard>
+    ),
+  },
+  {
+    path: paths.processos.editar(':id'),
+    element: (
+      <RoleGuard action="processos:editar">
+        <EditarProcessoPage />
       </RoleGuard>
     ),
   },

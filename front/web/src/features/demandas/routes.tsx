@@ -5,6 +5,7 @@ import { RoleGuard } from '@/routes/RoleGuard';
 import CriarDemandaPage from './pages/CriarDemandaPage';
 import ListaDemandasPage from './pages/ListaDemandasPage';
 import DetalheDeamandaPage from './pages/DetalheDemandaPage';
+import EditarDemandaPage from './pages/EditarDemandaPage';
 
 export const demandasRoutes: RouteObject[] = [
   {
@@ -28,6 +29,14 @@ export const demandasRoutes: RouteObject[] = [
     element: (
       <RoleGuard action="demandas:criar">
         <CriarDemandaPage />
+      </RoleGuard>
+    ),
+  },
+  {
+    path: paths.demandas.editar(':id'),
+    element: (
+      <RoleGuard action="demandas:editar">
+        <EditarDemandaPage />
       </RoleGuard>
     ),
   },

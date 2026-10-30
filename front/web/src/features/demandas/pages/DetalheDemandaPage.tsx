@@ -19,6 +19,8 @@ import { TramitacaoTimeline } from '../components/TramitacaoTimeline';
 import { useDisclosure } from '@mantine/hooks';
 import { AdicionarTramitacaoModal } from '../components/AdicionarTramitacaoModal';
 import { paths } from '@/routes/paths';
+import { EditButton } from '@/components/ui/EditButton';
+import { usePermission } from '@/features/auth/hooks/usePermission';
 
 export default function DetalheDeamandaPage() {
   const { id } = useParams<{ id: string }>();
@@ -26,15 +28,12 @@ export default function DetalheDeamandaPage() {
 
   const [demanda, setDemanda] = useState<Demanda | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const [tabAtiva, setTabAtiva] = useState('dados');
   const [tramitacoes, setTramitacoes] = useState<Tramitacao[] | null>(null);
+
+  const podeEditar = usePermission('demandas:editar');
 
   const [modalAberto, { open: abrirModal, close: fecharModal }] =
     useDisclosure(false);
-
-  //   const podeEditar = usePermission('estagiarios:editar');
-  //   const podeAlterarStatus = usePermission('estagiarios:alterarStatus');
 
   function carregar() {
     if (!id) return;
@@ -67,7 +66,16 @@ export default function DetalheDeamandaPage() {
           { label: 'Demandas', link: paths.demandas.lista },
           { label: `Demanda #${demanda.id}` },
         ]}
-        actions={<Button onClick={abrirModal}>Nova Tramitação</Button>}
+        actions={
+          <>
+            <Button onClick={abrirModal}>Nova Tramitação</Button>
+            {podeEditar && (
+              <EditButton
+                onClick={() => navigate(paths.demandas.editar(demanda.id))}
+              />
+            )}
+          </>
+        }
         badges={[
           {
             label: tempestividadeLabel[demanda.tempestividade],

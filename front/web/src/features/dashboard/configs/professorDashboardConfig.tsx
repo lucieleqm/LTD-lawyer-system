@@ -12,12 +12,6 @@ export const professorDashboardConfig: DashboardSection[] = [
         icon: <IconClipboardList size={20} />,
         to: paths.demandas.lista,
       },
-      {
-        title: 'Meus Processos',
-        description: 'Processos que você acompanha',
-        icon: <IconFileText size={20} />,
-        to: paths.processos.lista,
-      },
     ],
   },
 ];

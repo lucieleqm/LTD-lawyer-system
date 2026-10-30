@@ -23,11 +23,11 @@ interface EstagiarioRepository extends JpaRepository<Estagiario, Long>, JpaSpeci
         JOIN e.pessoa p
         JOIN p.usuario u
         WHERE (:nome IS NULL OR LOWER(p.nome) LIKE LOWER(CONCAT('%', :nome, '%')))
-        AND u.status = :status
+        AND u.status IN :status
     """)
     List<EstagiarioDTO.OptionResponse> buscarAtivosPorNome(
             @Param("nome") String nome,
-            @Param("status") UsuarioStatus status,
+            @Param("status") List<UsuarioStatus> status,
             Pageable pageable
     );
 }

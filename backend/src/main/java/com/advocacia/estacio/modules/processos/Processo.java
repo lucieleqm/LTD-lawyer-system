@@ -82,6 +82,13 @@ public class Processo implements Serializable {
         parte.setProcesso(this);
     }
 
+    public void atualizarPartesEnvolvidas(List<ParteEnvolvida> novasPartes) {
+        this.partesEnvolvidas.clear();
+        if (novasPartes != null) {
+            novasPartes.forEach(this::adicionarParteEnvolvida);
+        }
+    }
+
     /**
      * Gera e atribui o número de identificação interno a este processo.
      * A geração baseia-se na data atual e num número sequencial fornecido.
@@ -98,6 +105,23 @@ public class Processo implements Serializable {
 
         String dataFormatada = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy.ddMM"));
         this.numeroProcesso = String.format("%s.%04d", dataFormatada, sequencial);
+    }
+
+    public void atualizarDados(Advogado advogado, Estagiario estagiario, Assistido assistido,
+                          String numeroProcessoPje, AreaDireito areaDireito,
+                          String assunto, String vara, Tribunal tribunal,
+                          ProcessoStatus status, LocalDate prazoFinal) {
+
+        this.advogado = advogado;
+        this.estagiario = estagiario;
+        this.assistido = assistido;
+        this.numeroProcessoPje = numeroProcessoPje;
+        this.areaDireito = areaDireito;
+        this.assunto = assunto;
+        this.vara = vara;
+        this.tribunal = tribunal;
+        this.prazoFinal = prazoFinal;
+        this.status = status;
     }
 
     @Override

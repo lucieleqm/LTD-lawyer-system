@@ -79,8 +79,8 @@ export const processoStatusLabel: Record<ProcessoStatus, string> = {
 // TRIBUNAL
 // ==========================================
 export const TRIBUNAL = {
-  STF: 'STF',
-  STJ: 'STJ',
+  // STF: 'STF',
+  // STJ: 'STJ',
   TJMA: 'TJMA',
   TRF1: 'TRF1',
   TRT16: 'TRT16',
@@ -89,8 +89,8 @@ export const TRIBUNAL = {
 export type Tribunal = (typeof TRIBUNAL)[keyof typeof TRIBUNAL];
 
 export const tribunalLabel: Record<Tribunal, string> = {
-  [TRIBUNAL.STF]: 'Supremo Tribunal Federal',
-  [TRIBUNAL.STJ]: 'Superior Tribunal de Justiça',
+  // [TRIBUNAL.STF]: 'Supremo Tribunal Federal',
+  // [TRIBUNAL.STJ]: 'Superior Tribunal de Justiça',
   [TRIBUNAL.TJMA]: 'Tribunal de Justiça do Maranhão',
   [TRIBUNAL.TRF1]: 'Tribunal Regional Federal da 1ª Região',
   [TRIBUNAL.TRT16]: 'Tribunal Regional do Trabalho da 16ª Região',

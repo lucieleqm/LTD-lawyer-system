@@ -39,7 +39,8 @@ public class EstagiarioService {
 	@Transactional(readOnly = true)
 	public List<EstagiarioDTO.OptionResponse> listarOpcoes(String nome) {
 		Pageable limite = PageRequest.of(0, 20);
-		return  estagiarioRepository.buscarAtivosPorNome(nome, UsuarioStatus.ATIVO, limite);
+		List<UsuarioStatus> statusPermitidos = List.of(UsuarioStatus.ATIVO, UsuarioStatus.BLOQUEADO);
+		return  estagiarioRepository.buscarAtivosPorNome(nome, statusPermitidos, limite);
 	}
 
 	public EstagiarioDTO.Response buscarPorId(Long id) {

@@ -3,12 +3,15 @@ package com.advocacia.estacio.modules.demandas;
 import jakarta.persistence.criteria.*;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DemandaSpecs {
+    private static final ZoneId FUSO = ZoneId.of("America/Fortaleza");
     private static final List<String> PAPEIS = List.of("advogado", "professor", "estagiario");
 
     public static Specification<Demanda> envolvePessoa(Long pessoaId) {
@@ -43,8 +46,8 @@ public class DemandaSpecs {
             if (filtro.etapaAtual() != null) {
                 predicates.add(cb.equal(root.get("etapaAtual"), filtro.etapaAtual()));
             }
-            if(filtro.tempestividade() != null) {
-                predicates.add(cb.equal(root.get("tempestividade"), filtro.tempestividade()));
+            if (filtro.tempestividade() != null) {
+                predicates.add(tempestividade(filtro.tempestividade(), root, cb));
             }
             if (hasTermo(filtro)) {
                 String termo = "%" + filtro.termo().trim().toLowerCase()  + "%";
@@ -61,5 +64,14 @@ public class DemandaSpecs {
 
     private static boolean hasTermo(DemandaDTO.SearchFilter filtro) {
         return filtro.termo() != null && !filtro.termo().isBlank();
+    }
+
+    private static Predicate tempestividade(Tempestividade valor, Root<Demanda> root, CriteriaBuilder cb) {
+        LocalDate hoje = LocalDate.now(FUSO);
+        Path<LocalDate> prazoFinal = root.get("prazoFinal");
+
+        return valor == Tempestividade.FORA_DO_PRAZO
+                ? cb.lessThan(prazoFinal, hoje)
+                : cb.greaterThanOrEqualTo(prazoFinal, hoje);
     }
 }

@@ -59,7 +59,7 @@ export function DetalheProfessorPage() {
           <>
             {podeEditar && (
               <EditButton
-                onClick={() => navigate(`/professores/${professor.id}/editar`)}
+                onClick={() => navigate(paths.professores.editar(professor.id))}
               />
             )}
             {!ehVoceMesmo && (
