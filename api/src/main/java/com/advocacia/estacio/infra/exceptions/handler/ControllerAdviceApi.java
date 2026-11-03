@@ -55,7 +55,7 @@ public class ControllerAdviceApi {
     public ProblemDetail handleDataIntegrityViolation(DataIntegrityViolationException ex) {
         var problemDetail = ProblemDetail.forStatusAndDetail(
                 HttpStatus.BAD_REQUEST,
-                "Não foi possível concluir a operação. Isso geralmente ocorre quando você tenta cadastrar uma informação que já existe no sistema ou quando um dado relacionado está incorreto."
+                "Operação viola uma restrição de integridade dos dados"
         );
         problemDetail.setType(URI.create("/docs/erros.html#violacao-de-integridade"));
         problemDetail.setTitle("Violação de Integridade");
@@ -67,7 +67,7 @@ public class ControllerAdviceApi {
     public ProblemDetail handleEntityNotFound(EntityNotFoundException ex) {
         var problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
         problemDetail.setType(URI.create("/docs/erros.html#recurso-nao-encontrado"));
-        problemDetail.setTitle("Recurso Não Encontrado ");
+        problemDetail.setTitle("Recurso Não Encontrado");
         return problemDetail;
     }
 

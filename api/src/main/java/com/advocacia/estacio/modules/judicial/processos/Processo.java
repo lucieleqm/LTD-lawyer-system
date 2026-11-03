@@ -1,5 +1,6 @@
 package com.advocacia.estacio.modules.judicial.processos;
 
+import com.advocacia.estacio.modules.judicial.areas_direito.AreaDireito;
 import com.advocacia.estacio.modules.membros.advogados.Advogado;
 import com.advocacia.estacio.modules.atendimento.assistidos.Assistido;
 import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
@@ -33,8 +34,8 @@ public class Processo implements Serializable {
     @Column(name = "numero_processo_pje", unique = true, length = 50)
     private String numeroProcessoPje;
 
-    @Column(name = "area_direito")
-    @Enumerated(EnumType.STRING)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "area_direito_id", nullable = false)
     private AreaDireito areaDireito;
 
     @Enumerated(EnumType.STRING)

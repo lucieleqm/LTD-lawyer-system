@@ -1,11 +1,6 @@
 package com.advocacia.estacio.modules.judicial.processos;
 
 public enum Tribunal {
-
-//	ESTADUAL( "Estadual"),
-//	FEDERAL( "Federal"),
-//	TRABALHO("Trabalho");
-
     STF("Supremo Tribunal Federal"),
     STJ("Superior Tribunal de Justiça"),
     TJMA("Tribunal de Justiça do Maranhão"),

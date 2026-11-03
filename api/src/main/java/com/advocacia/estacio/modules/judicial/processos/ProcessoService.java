@@ -3,6 +3,7 @@ package com.advocacia.estacio.modules.judicial.processos;
 import com.advocacia.estacio.infra.exceptions.ConflitoDeDadosException;
 import com.advocacia.estacio.infra.security.AuthorizationUtils;
 import com.advocacia.estacio.infra.security.SecurityUtils;
+import com.advocacia.estacio.modules.judicial.areas_direito.AreaDireitoService;
 import com.advocacia.estacio.modules.membros.advogados.Advogado;
 import com.advocacia.estacio.modules.membros.advogados.AdvogadoService;
 import com.advocacia.estacio.modules.atendimento.assistidos.Assistido;
@@ -27,22 +28,22 @@ public class ProcessoService {
 	private final AssistidoService assistidoService;
 	private final AdvogadoService advogadoService;
 	private final EstagiarioService estagiarioService;
+	private final AreaDireitoService areaDireitoService;
 	private final SecurityUtils securityUtils;
 	private final AuthorizationUtils authz;
 
 	@Transactional
 	public ProcessoDTO.Response cadastrar(ProcessoDTO.CreateRequest req) {
 		validarNumeroPjeUnico(req.numeroProcessoPje());
-		Long sequencial = processoRepository.obterProximoSequencial();
 
 		Assistido assistido = assistidoService.obterReferencia(req.assistidoId());
 		Advogado advogado = advogadoService.obterReferencia(req.advogadoId());
 		Estagiario estagiario = estagiarioService.obterReferecia(req.estagiarioId());
+		var areaDireito = areaDireitoService.obterAtivaParaVinculo(req.areaDireitoId());
 
-		Processo processo = req.toEntity(assistido, advogado, estagiario);
-		processo.atribuirNumeroDeProcesso(sequencial);
-		processo = processoRepository.save(processo);
-		return new ProcessoDTO.Response(processo);
+		Processo processo = req.toEntity(assistido, advogado, estagiario, areaDireito);
+		processo.atribuirNumeroDeProcesso(processoRepository.obterProximoSequencial());
+		return new ProcessoDTO.Response(processoRepository.save(processo));
 	}
 
 	@Transactional(readOnly = true)

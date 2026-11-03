@@ -1,5 +1,6 @@
 package com.advocacia.estacio.modules.judicial.processos;
 
+import com.advocacia.estacio.modules.judicial.areas_direito.AreaDireito;
 import com.advocacia.estacio.modules.membros.advogados.Advogado;
 import com.advocacia.estacio.modules.atendimento.assistidos.Assistido;
 import com.advocacia.estacio.modules.membros.estagiarios.Estagiario;
@@ -34,15 +35,15 @@ public interface ProcessoDTO {
             @NotNull Long advogadoId,
             @NotNull Long estagiarioId,
             @NotNull Long assistidoId,
+            @NotNull Long areaDireitoId,
             String numeroProcessoPje,
-            AreaDireito areaDireito,
             String assunto,
             String vara,
             Tribunal tribunal,
             LocalDate prazoFinal,
             List<ParteEnvolvidaRequest> partesEnvolvidas
     ) {
-        public Processo toEntity(Assistido assistido, Advogado advogado, Estagiario estagiario) {
+        public Processo toEntity(Assistido assistido, Advogado advogado, Estagiario estagiario, AreaDireito areaDireito) {
             Processo processo = Processo.builder()
                     .prazoFinal(prazoFinal)
                     .status(ProcessoStatus.TRAMITANDO)
