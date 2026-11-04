@@ -2,6 +2,7 @@ package com.advocacia.estacio.modules.judicial.orgaos_julgadores;
 
 import com.advocacia.estacio.infra.exceptions.ConflitoDeDadosException;
 import com.advocacia.estacio.infra.exceptions.RegraDeNegocioException;
+import com.advocacia.estacio.modules.judicial.tribunais.TribunalService;
 import com.advocacia.estacio.shared.entity.Situacao;
 import com.advocacia.estacio.shared.pagination.Paginacao;
 import com.advocacia.estacio.shared.pagination.SliceResponse;
@@ -19,14 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class OrgaoJulgadorService {
     private final OrgaoJulgadorRepository orgaoJulgadorRepository;
+    private final TribunalService tribunalService;
 
     @Transactional
     public OrgaoJulgadorDTO.Response cadastrar(OrgaoJulgadorDTO.Request req) {
         String nome = req.nome().strip();
+        var tribunal = tribunalService.obterAtivaParaVinculo(req.tribunalId());
+
         if (orgaoJulgadorRepository.existsByNomeIgnoreCase(nome)) {
             throw new ConflitoDeDadosException("Já existe um órgão julgador com esse nome");
         }
-        OrgaoJulgador orgao = orgaoJulgadorRepository.save(req.toEntity());
+        OrgaoJulgador orgao = orgaoJulgadorRepository.save(req.toEntity(tribunal));
         return new OrgaoJulgadorDTO.Response(orgao);
     }
 
@@ -56,10 +60,14 @@ public class OrgaoJulgadorService {
     public OrgaoJulgadorDTO.Response atualizar(Long id, OrgaoJulgadorDTO.Request req) {
         OrgaoJulgador orgao = buscarEntidade(id);
         String nome = req.nome().strip();
+
+        var tribunal = tribunalService.obterAtivaParaVinculo(req.tribunalId());
+
         if (orgaoJulgadorRepository.existsByNomeIgnoreCaseAndIdNot(nome, id)) {
             throw new ConflitoDeDadosException("Já existe um órgão julgador com esse nome");
         }
-        orgao.atualizar(nome, req.tribunal(), req.instancia());
+
+        orgao.atualizar(nome, tribunal, req.instancia());
         return new OrgaoJulgadorDTO.Response(orgao);
     }
 

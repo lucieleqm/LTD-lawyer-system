@@ -13,10 +13,10 @@ public interface OrgaoJulgadorDTO {
     @Schema(name = "OrgaoJulgadorRequest")
     record Request(
             @NotBlank @Size(max = 120) String nome,
-            @NotNull Tribunal tribunal,
+            @NotNull Long tribunalId,
             @NotNull Integer instancia
             ) {
-        public OrgaoJulgador toEntity() {
+        public OrgaoJulgador toEntity(Tribunal tribunal) {
             return OrgaoJulgador.builder()
                     .nome(nome.strip())
                     .tribunal(tribunal)

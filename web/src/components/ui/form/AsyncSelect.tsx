@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import {
   Select as MantineSelect,
@@ -6,6 +6,7 @@ import {
   Loader,
 } from '@mantine/core';
 import { useDebouncedValue } from '@mantine/hooks';
+import { FetchOptions, Option } from '@/types/sliceResponse';
 
 interface AsyncSelectProps extends Omit<
   MantineSelectProps,
@@ -13,7 +14,7 @@ interface AsyncSelectProps extends Omit<
 > {
   name: string;
   label: string;
-  fetchData: (termo: string) => Promise<{ value: string; label: string }[]>;
+  fetchData: FetchOptions;
 }
 
 export function AsyncSelect({
@@ -30,37 +31,49 @@ export function AsyncSelect({
   const erro = errors[name]?.message as string | undefined;
 
   const [searchValue, setSearchValue] = useState('');
-
   const [debouncedSearch] = useDebouncedValue(searchValue, 300);
 
-  const [options, setOptions] = useState<{ value: string; label: string }[]>(
-    [],
-  );
+  const [options, setOptions] = useState<Option[]>([]);
+  const [page, setPage] = useState(0);
+  const [hasNext, setHasNext] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    let montado = true;
+  const requestId = useRef(0);
 
-    async function carregarDados() {
+  const carregar = useCallback(
+    async (termo: string, pagina: number) => {
+      const id = ++requestId.current;
       setLoading(true);
       try {
-        const data = await fetchData(debouncedSearch);
-        if (montado) setOptions(data);
+        const slice = await fetchData(termo, pagina);
+        if (id !== requestId.current) return; // resposta obsoleta
+        setOptions((prev) => (pagina === 0 ? slice.content : mesclar(prev, slice.content)));
+        setPage(slice.page);
+        setHasNext(slice.hasNext);
+        
       } catch (error) {
         console.error(`Erro ao buscar opções para ${name}`, error);
-        if (montado) setOptions([]);
+        if (id === requestId.current && pagina === 0) {
+          setOptions([]);
+          setHasNext(false);
+        }
       } finally {
-        if (montado) setLoading(false);
+        if (id === requestId.current) setLoading(false);
       }
-    }
+    },
+    [fetchData, name],
+  );
 
-    carregarDados();
 
-    return () => {
-      montado = false; // Evita memory leaks se o componente desmontar
-    };
-  }, [debouncedSearch, fetchData]);
+  useEffect(() => {
+    carregar(debouncedSearch, 0);
+  }, [debouncedSearch, carregar]);
 
+  const carregarMais = () => {
+    if (hasNext && !loading) carregar(debouncedSearch, page + 1);
+  };
+
+    
   return (
     <Controller
       name={name}
@@ -86,4 +99,9 @@ export function AsyncSelect({
       )}
     />
   );
+}
+
+function mesclar(atuais: Option[], novas: Option[]): Option[] {
+  const vistos = new Set(atuais.map((o) => o.value));
+  return [...atuais, ...novas.filter((o) => !vistos.has(o.value))];
 }

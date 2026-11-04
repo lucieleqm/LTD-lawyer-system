@@ -20,6 +20,9 @@ import { administrativoRoutes } from '@/features/equipe-administrativa/routes';
 import { demandasRoutes } from '@/features/demandas/routes';
 import { processosRoutes } from '@/features/processos/routes';
 import { professoresRoutes } from '@/features/professores/routes';
+import { tribunaisRoutes } from '@/features/tribunais/routes';
+import { areasDireitoRoutes } from '@/features/areas-direito/routes';
+import { orgaosJulgadoresRoutes } from '@/features/orgaos-julgadores/routes';
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +51,9 @@ export const router = createBrowserRouter([
           ...administrativoRoutes,
           ...demandasRoutes,
           ...processosRoutes,
+          ...tribunaisRoutes,
+          ...areasDireitoRoutes,
+          ...orgaosJulgadoresRoutes,
         ],
       },
     ],

@@ -16,6 +16,24 @@ export const paths = {
     novo: '/processos/novo',
     editar: (id: string | number) => `/processos/${id}/editar`,
   },
+  orgaosJulgadores: {
+    lista: '/orgaos-julgadores',
+    detalhe: (id: string | number) => `/orgaos-julgadores/${id}`,
+    novo: '/orgaos-julgadores/novo',
+    editar: (id: string | number) => `/orgaos-julgadores/${id}/editar`,
+  },
+  areasDireito: {
+    lista: '/areas-direito',
+    detalhe: (id: string | number) => `/areas-direito/${id}`,
+    novo: '/areas-direito/novo',
+    editar: (id: string | number) => `/areas-direito/${id}/editar`,
+  },
+  tribunais: {
+    lista: '/tribunais',
+    detalhe: (id: string | number) => `/tribunais/${id}`,
+    novo: '/tribunais/novo',
+    editar: (id: string | number) => `/tribunais/${id}/editar`,
+  },
   demandas: {
     lista: '/demandas',
     detalhe: (id: string | number) => `/demandas/${id}`,
